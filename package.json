@@ -5,7 +5,9 @@
     "author": "Lucas Bittencourt <lucasgdbittencourt@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "preinstall": "cd packages/server && yarn && cd ../web && yarn",
+        "server:install": "cd packages/server && yarn",
+        "web:install": "cd packages/web && yarn",
+        "preinstall": "yarn server:install && yarn web:install",
         "start": "cd packages/web && yarn start"
     }
 }

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
@@ -13,6 +13,10 @@ mongoose.connect("mongodb://mongodb:27017/test", {
 
 app.use(cors());
 app.use(express.json());
-app.use("/data", (req, res) => res.status(200).json({ data: "hello-world" }));
+app.use(express.urlencoded({ extended: false }));
+
+app.get("/data", (req: Request, res: Response) =>
+    res.status(200).json({ data: "hello-world" })
+);
 
 app.listen(8080, () => console.log("listening on 8080"));

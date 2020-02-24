@@ -4,7 +4,7 @@ import serverAPI from "./services/serverAPI";
 function App() {
     useEffect(() => {
         (async () => {
-            const data = await serverAPI.get("/data");
+            const { data } = await serverAPI.get("/data");
 
             console.log(data);
         })();
