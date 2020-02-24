@@ -1,10 +1,10 @@
 # Docker, Mongo, React and Node with Typescript
 
-## requirements
+## Requirements
 
 -   Docker
 
-## how to
+## How to
 
 -   clone this repo
     -   development:

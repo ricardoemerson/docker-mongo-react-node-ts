@@ -1,16 +1,22 @@
-import React, { useEffect } from "react";
-import serverAPI from "./services/serverAPI";
+import React, { useState, useEffect } from 'react';
+import serverAPI from './services/serverAPI';
+
+interface Data {
+    data: { response: string };
+}
 
 function App() {
+    const [response, setResponse] = useState('');
+
     useEffect(() => {
         (async () => {
-            const { data } = await serverAPI.get("/data");
+            const { data }: Data = await serverAPI.get('/data');
 
-            console.log(data);
+            setResponse(data.response);
         })();
     }, []);
 
-    return <div>Hello, world! hahaha</div>;
+    return <div>Hello, world! Data from backend: {response}</div>;
 }
 
 export default App;

@@ -22,6 +22,8 @@
         "@types/mongoose": "^5.7.1",
         "nodemon": "^2.0.2",
         "sucrase": "^3.12.1",
+        "tslint": "^6.0.0",
+        "tslint-config-prettier": "^1.18.0",
         "typescript": "^3.8.2"
     }
 }
