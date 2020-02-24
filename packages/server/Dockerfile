@@ -10,4 +10,7 @@ RUN yarn
 
 COPY . .
 
-ENTRYPOINT [ "yarn", "dev" ]
+ARG NODE_ENV
+ENV NODE_ENV $NODE_ENV
+
+RUN if [ $NODE_ENV = "production" ]; then yarn build; fi
