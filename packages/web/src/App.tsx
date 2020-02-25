@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import serverAPI from './services/serverAPI';
+
+import serverAPI from '~/services/serverAPI';
 
 interface Data {
     data: { response: string };
