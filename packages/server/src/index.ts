@@ -2,9 +2,11 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+import { SERVER_PORT, MONGO_INITDB_DATABASE } from './configs/config.json';
+
 const app = express();
 
-mongoose.connect('mongodb://mongodb:27017/test', {
+mongoose.connect(`mongodb://mongodb:27017/${MONGO_INITDB_DATABASE}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -19,4 +21,4 @@ app.get('/data', (req: Request, res: Response) =>
     res.status(200).json({ response: 'hello-world' })
 );
 
-app.listen(8080);
+app.listen(SERVER_PORT);
