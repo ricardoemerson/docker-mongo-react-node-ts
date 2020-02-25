@@ -6,7 +6,7 @@ interface Data {
 }
 
 function App() {
-    const [response, setResponse] = useState('');
+    const [response, setResponse] = useState<string>('waiting response...');
 
     useEffect(() => {
         (async () => {
