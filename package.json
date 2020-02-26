@@ -5,9 +5,14 @@
     "author": "Lucas Bittencourt <lucasgdbittencourt@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "server:install": "cd packages/server && yarn",
-        "web:install": "cd packages/web && yarn",
         "preinstall": "yarn server:install && yarn web:install",
-        "start": "cd packages/web && yarn start"
+        "start:web": "cd packages/web && yarn start",
+        "build:web": "cd packages/web && yarn build",
+        "test:web": "cd packages/web && yarn test",
+        "web:install": "cd packages/web && yarn",
+        "dev:server": "cd packages/server && yarn dev",
+        "build:server": "cd packages/server && yarn build",
+        "start:server": "cd packages/server && yarn start",
+        "server:install": "cd packages/server && yarn"
     }
 }
