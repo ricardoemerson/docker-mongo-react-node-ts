@@ -3,6 +3,7 @@
     "private": false,
     "version": "1.0.0",
     "author": "Lucas Bittencourt <lucasgdbittencourt@gmail.com>",
+    "repository": "git@github.com:lucasgdb/docker-mongo-react-node-ts.git",
     "license": "MIT",
     "scripts": {
         "preinstall": "yarn server:install && yarn web:install",
