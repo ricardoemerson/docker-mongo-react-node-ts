@@ -11,9 +11,13 @@ function App() {
 
     useEffect(() => {
         (async () => {
-            const { data }: Data = await serverAPI.get('/data');
+            try {
+                const { data }: Data = await serverAPI.get('/data');
 
-            setResponse(data.response);
+                setResponse(data.response);
+            } catch (err) {
+                setResponse(err.toString());
+            }
         })();
     }, []);
 

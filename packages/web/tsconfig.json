@@ -26,5 +26,5 @@
     "build",
     "node_modules"
   ],
-  "extends": "./paths.json"
+  "extends": "./compilerOptions.json"
 }
