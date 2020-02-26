@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import { SERVER_PORT, MONGO_INITDB_DATABASE } from './configs/config.json';
+import { SERVER_PORT, MONGO_INITDB_DATABASE } from './configs/default.json';
 
 const app = express();
 
