@@ -2,8 +2,8 @@ version: "3"
 
 services:
     database:
-        container_name: "mongodb"
-        image: "mongo"
+        container_name: mongodb
+        image: mongo
         environment:
             - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
             - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
@@ -17,7 +17,7 @@ services:
             context: ./packages/server
             args:
                 NODE_ENV: development
-        container_name: "server"
+        container_name: server
         expose:
             - ${SERVER_PORT}
         ports:
@@ -29,8 +29,11 @@ services:
             - database
         command: yarn dev
     web:
-        build: ./packages/web
-        container_name: "web"
+        build:
+            context: ./packages/web
+            args:
+                NODE_ENV: development
+        container_name: web
         expose:
             - ${APP_PORT}
         ports:
