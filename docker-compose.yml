@@ -1,44 +1,16 @@
-version: "3"
+version: "3.3"
 
 services:
     database:
         container_name: mongodb
         image: mongo
         environment:
-            - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
-            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+            - MONGO_INITDB_DATABASE=test
+            - MONGO_INITDB_ROOT_USERNAME=root
+            - MONGO_INITDB_ROOT_PASSWORD=secret
         ports:
             - 27017-27017
         volumes:
-            - ./data:/data/db
-    server:
-        build:
-            context: ./packages/server
-            args:
-                NODE_ENV: development
-        container_name: server
-        expose:
-            - ${SERVER_PORT}
-        ports:
-            - ${SERVER_PORT}:${SERVER_PORT}
-        volumes:
-            - ./packages/server/src:/server/src
-            - ./packages/server/node_modules:/server/node_modules
-        links:
-            - database
-        command: yarn dev
-    web:
-        build:
-            context: ./packages/web
-            args:
-                NODE_ENV: development
-        container_name: web
-        expose:
-            - ${APP_PORT}
-        ports:
-            - ${APP_PORT}:${APP_PORT}
-        volumes:
-            - ./packages/web/node_modules:/web/node_modules
-        links:
-            - server
+            - data:/data/db
+volumes:
+    data:

@@ -1,19 +1,20 @@
 {
-    "name": "docker-mongo-react-node-ts",
-    "private": false,
+    "name": "template",
+    "private": true,
     "version": "1.0.0",
     "author": "Lucas Bittencourt <lucasgdbittencourt@gmail.com>",
     "repository": "git@github.com:lucasgdb/docker-mongo-react-node-ts.git",
     "license": "MIT",
     "scripts": {
-        "preinstall": "yarn server:install && yarn web:install",
-        "start:web": "cd packages/web && yarn start",
-        "build:web": "cd packages/web && yarn build",
-        "test:web": "cd packages/web && yarn test",
-        "web:install": "cd packages/web && yarn",
-        "dev:server": "cd packages/server && yarn dev",
-        "build:server": "cd packages/server && yarn build",
-        "start:server": "cd packages/server && yarn start",
-        "server:install": "cd packages/server && yarn"
+        "web:start": "yarn workspace @template/web start",
+        "server:dev": "yarn workspace @template/server dev",
+        "start": "concurrently --kill-others \"yarn web:start\" \"yarn server:dev\"",
+        "build": "yarn workspaces run build"
+    },
+    "workspaces": [
+        "./packages/*"
+    ],
+    "devDependencies": {
+        "concurrently": "^5.1.0"
     }
 }

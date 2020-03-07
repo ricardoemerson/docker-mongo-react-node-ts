@@ -1,6 +1,6 @@
 {
-    "name": "server",
-    "private": true,
+    "name": "@template/server",
+    "private": false,
     "version": "1.0.0",
     "main": "dist/index.js",
     "license": "MIT",
