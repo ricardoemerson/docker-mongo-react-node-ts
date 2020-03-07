@@ -2,19 +2,17 @@
 
 ## Requirements
 
--   Docker (Development, Production)
--   Yarn (Development)
+-   Docker
+-   Yarn
 
 ## How to
 
--   Clone this repo
+-   Clone this repo.
     -   Development:
-        -   Type `yarn` to install its dependencies
-        -   Type `docker-compose up --build` to build and run the server with web
-        -   Type `yarn start` to start the web `http://localhost:3000` or access the production build on `http://localhost:3001`
-    -   Production:
-        -   Type `docker-compose -f docker-compose.prod.yml up --build` to build and run the server with web
-        -   Access the product build on `http://localhost:3001`
+        -   Type `yarn` to install its dependencies.
+        -   Type `docker-compose up --build` to build and run the database.
+        -   Type `yarn start` to start the web and server.
+        -   Access the `http://localhost:3000` on the browser.
 
 ## Author
 
