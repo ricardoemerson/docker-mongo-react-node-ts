@@ -11,10 +11,10 @@
         "start": "concurrently --kill-others \"yarn web:start\" \"yarn server:dev\"",
         "build": "yarn workspaces run build"
     },
-    "workspaces": [
-        "./packages/*"
-    ],
     "devDependencies": {
         "concurrently": "^5.1.0"
-    }
+    },
+    "workspaces": [
+        "./packages/*"
+    ]
 }
