@@ -7,6 +7,12 @@
             "~/(.*)": "<rootDir>/src/$1"
         }
     },
+    "scripts": {
+        "start": "react-app-rewired start",
+        "build": "react-app-rewired build",
+        "test": "react-app-rewired test",
+        "eject": "react-app-rewired eject"
+    },
     "dependencies": {
         "axios": "^0.19.2",
         "react": "^16.12.0",
@@ -29,13 +35,7 @@
         "tslint-config-prettier": "^1.18.0",
         "typescript": "^3.8.2"
     },
-    "scripts": {
-        "start": "react-app-rewired start",
-        "build": "react-app-rewired build",
-        "test": "react-app-rewired test",
-        "eject": "react-app-rewired eject"
-    },
-    "eslintConfig": {
+    "tslintConfig": {
         "extends": "react-app"
     },
     "browserslist": {
