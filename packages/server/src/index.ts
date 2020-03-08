@@ -2,23 +2,31 @@ import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import { SERVER_PORT, MONGO_INITDB_DATABASE } from './configs/default.json';
+import { SERVER_PORT } from './configs/default.json';
 
 const app = express();
-
-mongoose.connect(`mongodb://mongodb:27017/${MONGO_INITDB_DATABASE}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-});
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/data', (req: Request, res: Response) =>
+app.get('/api/v1/data', (req: Request, res: Response) =>
     res.status(200).json({ response: 'hello-world' })
 );
 
-app.listen(SERVER_PORT);
+async function main() {
+    try {
+        await mongoose.connect('mongodb://root:secret@mongodb:27017/test', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true,
+        });
+
+        app.listen(SERVER_PORT, () => console.log('Conectado.'));
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+main();

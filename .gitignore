@@ -1,5 +1,5 @@
 node_modules
 build
 dist
-data
+mongodb_data
 yarn-error.log
