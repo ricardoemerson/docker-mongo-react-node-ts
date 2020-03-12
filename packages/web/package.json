@@ -32,7 +32,7 @@
         "customize-cra": "^0.9.1",
         "react-app-rewired": "^2.1.5",
         "react-scripts": "^3.4.0",
-        "tslint": "^6.0.0",
+        "tslint": "^6.1.0",
         "tslint-config-prettier": "^1.18.0",
         "typescript": "^3.8.2"
     },
