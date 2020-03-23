@@ -16,16 +16,19 @@ app.get('/api/v1/data', (req: Request, res: Response) =>
 
 async function main() {
     try {
-        await mongoose.connect('mongodb://root:secret@mongodb:27017/test', {
+        await mongoose.connect('mongodb://localhost/test', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
             useCreateIndex: true,
         });
 
-        app.listen(SERVER_PORT, () => console.log('Conectado.'));
+        app.listen(SERVER_PORT, () =>
+            // tslint:disable-next-line: no-console
+            console.log('The server has been started.')
+        );
     } catch (err) {
-        console.log(err);
+        throw err;
     }
 }
 
