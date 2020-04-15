@@ -23,7 +23,7 @@ async function main() {
             useCreateIndex: true,
         });
 
-        app.listen(SERVER_PORT, () =>
+        app.listen(process.env.PORT || SERVER_PORT, () =>
             // tslint:disable-next-line: no-console
             console.log('The server has been started.')
         );
