@@ -20,7 +20,8 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "modules.d.ts"
   ],
   "exclude": [
     "build",
