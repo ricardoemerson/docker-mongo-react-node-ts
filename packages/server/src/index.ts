@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv'
 
-import { SERVER_PORT } from './configs/default.json';
+dotenv.config();
 
 const app = express();
+const { MONGO_URL, PORT } = process.env;
 
 app.use(cors());
 app.use(express.json());
@@ -16,14 +18,14 @@ app.get('/api/v1/data', (req: Request, res: Response) =>
 
 async function main() {
     try {
-        await mongoose.connect('mongodb://localhost/test', {
+        await mongoose.connect(MONGO_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
             useCreateIndex: true,
         });
 
-        app.listen(process.env.PORT || SERVER_PORT, () =>
+        app.listen(PORT, () =>
             // tslint:disable-next-line: no-console
             console.log('The server has been started.')
         );
