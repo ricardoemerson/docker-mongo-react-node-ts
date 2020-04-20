@@ -24,7 +24,7 @@ mongoose.connect(MONGO_URL, {
 }, err => {
     if (err) throw err;
 
-    app.listen(PORT, () =>
+    app.listen(PORT || 8080, () =>
         // tslint:disable-next-line: no-console
         console.log('The server has been started.')
     );
