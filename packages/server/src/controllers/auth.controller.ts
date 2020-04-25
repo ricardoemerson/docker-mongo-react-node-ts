@@ -13,7 +13,11 @@ export default {
 
 			user.password = undefined!;
 
-			return res.status(200).json(user);
+			return res.status(200).json({
+				authenticated: true,
+				accessToken: generateAccessToken(user._id),
+				user: { _id: user._id, email: user.email, name: user.name },
+			});
 		} catch (err) {
 			return res.status(400).json(err);
 		}
@@ -38,7 +42,7 @@ export default {
 			return res.status(200).json({
 				authenticated: true,
 				accessToken: generateAccessToken(_id),
-				user: { email: user.email, name },
+				user: { _id, email: user.email, name },
 			});
 		} catch (err) {
 			return res.status(400).json(err);
