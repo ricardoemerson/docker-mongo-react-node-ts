@@ -7,21 +7,26 @@ import React, {
 } from 'react';
 
 import * as auth from '~/services/authentication';
-import IUser from '~/services/IUser';
-import IAuth from './IAuth';
-import IAuthContext from './IAuthContext';
+
+export interface IAuthContext {
+	loading: boolean;
+	user: auth.IUser | null;
+	signIn(email: string, password: string): void;
+	signUp(name: string, email: string, password: string): void;
+	signOut(): void;
+}
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider: React.FC = ({ children }) => {
-	const [user, setUser] = useState<IUser | null>(null);
+	const [user, setUser] = useState<auth.IUser | null>(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const storedAuth = localStorage.getItem('R:auth');
 
 		if (storedAuth) {
-			const parseAuth: IAuth = JSON.parse(storedAuth);
+			const parseAuth: auth.IAuth = JSON.parse(storedAuth);
 
 			if (parseAuth.authenticated) {
 				setUser(parseAuth.user);
@@ -41,13 +46,26 @@ const AuthProvider: React.FC = ({ children }) => {
 		}
 	}, []);
 
+	const signUp = useCallback(
+		async (name: string, email: string, password: string) => {
+			const response = await auth.signUp(name, email, password);
+
+			if (response.authenticated) {
+				localStorage.setItem('R:auth', JSON.stringify(response));
+
+				setUser(response.user);
+			}
+		},
+		[]
+	);
+
 	const signOut = useCallback(() => {
 		setUser(null);
 		localStorage.clear();
 	}, []);
 
 	return (
-		<AuthContext.Provider value={{ loading, user, signIn, signOut }}>
+		<AuthContext.Provider value={{ loading, user, signIn, signUp, signOut }}>
 			{children}
 		</AuthContext.Provider>
 	);

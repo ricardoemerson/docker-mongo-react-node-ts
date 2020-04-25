@@ -1,24 +1,45 @@
-import IAuth from '~/contexts/IAuth';
+import authAPI from './authAPI';
+
+export interface IUser {
+	_id: string;
+	email: string;
+	name: string;
+}
+
+export interface IAuth {
+	authenticated: boolean;
+	accessToken: string;
+	user: IUser;
+}
 
 export async function signIn(email: string, password: string): Promise<IAuth> {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			if (email === 'lucasgdbittencourt@gmail.com' && password === 'test') {
-				return resolve({
-					authenticated: true,
-					accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
-					user: {
-						email: 'lucasgdbittencourt@gmail.com',
-						name: 'Lucas Bittencourt',
-					},
-				});
-			} else {
-				return reject({
-					authenticated: false,
-					accessToken: null,
-					user: null,
-				});
-			}
-		}, 2000);
-	});
+	try {
+		const response = await authAPI.post('/', { email, password });
+
+		const data: IAuth = response.data;
+
+		return data;
+	} catch (err) {
+		throw err;
+	}
+}
+
+export async function signUp(
+	name: string,
+	email: string,
+	password: string
+): Promise<IAuth> {
+	try {
+		const response = await authAPI.post('/register', {
+			name,
+			email,
+			password,
+		});
+
+		const data: IAuth = response.data;
+
+		return data;
+	} catch (err) {
+		throw err;
+	}
 }

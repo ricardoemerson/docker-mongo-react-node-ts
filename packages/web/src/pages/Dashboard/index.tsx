@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Container } from '@material-ui/core';
 
-import Unauthenticated from '~/pages/Unauthenticated';
-import { useAuth } from '~/contexts/auth.context';
+import Header from '~/components/Header';
+import UserList from '~/components/UserList';
+import serverAPI from '~/services/serverAPI';
+import { IUser } from '~/services/authentication';
 
 export default function SignIn() {
-	const { user, signOut } = useAuth();
+	const [users, setUsers] = useState([] as IUser[]);
 
-	function handleSignOut() {
-		signOut();
-	}
+	useEffect(() => {
+		getUsers();
+	}, []);
 
-	if (!user) {
-		return <Unauthenticated />;
+	async function getUsers() {
+		const response = await serverAPI('/user');
+		const data: IUser[] = response.data;
+		const comingUsers = [];
+
+		for (const currentUser of data) {
+			comingUsers.push({
+				_id: currentUser._id,
+				name: currentUser.name,
+				email: currentUser.email,
+			});
+		}
+
+		setUsers(comingUsers);
 	}
 
 	return (
-		<div>
-			<button onClick={handleSignOut}>Sign out</button>
-		</div>
+		<>
+			<Header />
+
+			<Container style={{ marginTop: 10 }}>
+				<UserList rows={users} />
+			</Container>
+		</>
 	);
 }

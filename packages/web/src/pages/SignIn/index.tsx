@@ -8,7 +8,7 @@ export default function SignIn() {
 	const { signIn } = useAuth();
 
 	function handleSignIn() {
-		signIn('lucasgdbittencourt@gmail.com', 'test');
+		signIn('lucasgdbittencourt@gmail.com', '123');
 	}
 
 	return (

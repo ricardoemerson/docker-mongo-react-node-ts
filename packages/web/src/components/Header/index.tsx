@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Tooltip } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { useAuth } from '~/contexts/auth.context';
 
@@ -41,16 +41,27 @@ export default function Header() {
 				>
 					<MenuIcon />
 				</IconButton>
+
 				<Typography variant="h6" className={classes.title}>
-					Template
+					<Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
+						Template
+					</Link>
 				</Typography>
 
 				{user ? (
-					<Tooltip title="Sair">
-						<Button color="inherit" onClick={signOut}>
-							Sair
-						</Button>
-					</Tooltip>
+					<>
+						<Tooltip title="Dashboard">
+							<Button color="inherit" onClick={() => push('/app')}>
+								Dashboard
+							</Button>
+						</Tooltip>
+
+						<Tooltip title="Sair">
+							<Button color="inherit" onClick={signOut}>
+								Sair
+							</Button>
+						</Tooltip>
+					</>
 				) : (
 					<>
 						<Tooltip title="Entrar">
